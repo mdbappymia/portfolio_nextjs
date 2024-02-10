@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import "./globals.css";
-import MainNavbar from "@/components/MainNavbar";
+import "animate.css";
+import MainNavbar from "@/components/Shared/MainNavbar";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
+import MainFooter from "@/components/Shared/MainFooter";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Noto_Sans({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Welcome to my website",
@@ -21,16 +26,17 @@ export default function RootLayout({
       <head>
         <ThemeModeScript />
       </head>
-      <Flowbite>
-        <body
-          className={`${inter.className} dark:bg-gray-900 dark:text-white bg-gray-200`}
-        >
+      <body
+        className={`${font.className} dark:bg-gray-900 dark:text-white bg-gray-200`}
+      >
+        <Flowbite>
           <div className="container mx-auto px-2">
             <MainNavbar />
             {children}
+            <MainFooter />
           </div>
-        </body>
-      </Flowbite>
+        </Flowbite>
+      </body>
     </html>
   );
 }

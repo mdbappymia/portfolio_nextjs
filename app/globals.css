@@ -15,11 +15,29 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+body {
+  box-sizing: border-box;
+}
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+.download_btn:hover span {
+  display: inline-block;
+}
+.circle_icon:hover > img {
+  transform: rotate(180deg);
+  color: gray;
+  opacity: 1;
+}
+.circle_icon:hover > h1 > svg {
+  color: #84cc22;
+}
 
+.inset_card_shadow:hover {
+  box-shadow: inset 0 0 3px #7e7d7d !important;
+  transition: box-shadow ease-in-out 0.5s;
+  /* border: inset 5px white; */
+}

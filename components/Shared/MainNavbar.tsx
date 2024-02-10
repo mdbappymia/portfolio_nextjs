@@ -8,19 +8,17 @@ export default function MainNavbar() {
   const pathname = usePathname();
   return (
     <Navbar
-      className="my-10 py-6 !px-10 rounded-3xl border-gray-300 border shadow-sm"
+      className="my-5 inset_card_shadow py-6 lg:!px-10 !px-5 rounded-3xl border-gray-300 border"
       fluid
     >
-      <Navbar.Brand>
-        <Link
-          href="/"
-          className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
-        >
-          Bappy
-        </Link>
-      </Navbar.Brand>
+      <Link
+        href="/"
+        className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
+      >
+        Bappy
+      </Link>
       <div className="flex md:order-2">
-        <Button className="rounded-full bg-lime-500 dark:bg-lime-600 px-5">
+        <Button color="lime" pill className="px-5 mx-2">
           Let&apos;s Talk
         </Button>
         <DarkThemeToggle />

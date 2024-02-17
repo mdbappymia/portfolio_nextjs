@@ -1,0 +1,270 @@
+[
+  {
+    "_id": "61a3dd9d3baa432f3ff19554",
+    "name": "Bike Bazar",
+    "subtitle": "A simple motorcycle shop",
+    "email": "bappy@gmail.com",
+    "img": "https://i.ibb.co/mDC9n0J/home.png",
+    "screenshots": [
+      "https://i.ibb.co/HqPkbqt/bike-bazar-1.png",
+      "https://i.ibb.co/PQZDst2/bike-bazar-2.png",
+      "https://i.ibb.co/c2NncYd/bike-bazar-3.png"
+    ],
+    "overview": [
+      "This is a single-page application.",
+      " On this site, the homepage has several sections like Header, Banner, Products, Counter, contact, and review.",
+      "The footer and header occur on several pages so that it locates the share component.",
+      "In the homepage product section, you can select an item, and then it goes to the booking page. ",
+      "The booking page is only for login users.",
+      "You can book an item from the booking page. After booking, you can see your all order on the dashboard.",
+      "The dashboard is only visible for login users.",
+      "You can register or log in only using email and password.",
+      "In the dashboard page, there are several child pages that occur. Some sub-pages are protected for admin.",
+      "An admin can make admin another user. Admin can approve orders, delete orders, add new products and set the role of the user.",
+      "The about page carries the about of the site.",
+      "The site is responsive for mobile and desktop."
+    ],
+    "technology": [
+      "React",
+      "Node",
+      "Mongodb",
+      "Express",
+      "React Bootstrap",
+      "Firebase",
+      "Heroku",
+      "React hooks form"
+    ],
+    "codeLink": [
+      "https://github.com/mdbappymia/bike-bazar-client",
+      "https://github.com/mdbappymia/bike-bazar-server"
+    ],
+    "liveLink": "https://bike-bazar-ecc4c.web.app"
+  },
+  {
+    "_id": "61a5317f12b13bda4c5c16dd",
+    "name": "Travel BD",
+    "subtitle": "A simple MERN stack travel agency site",
+    "img": "https://lh3.googleusercontent.com/pw/AM-JKLVVsi9iwsAcCqrrIcqRmLxruI0eE8ZJ-C_uECdgRQQHqb6j2IuKC-L0kwrqrFdR-XRxEZ5j9TJf3q5Fbr7OP3jpQqinlMWjGoEadXF3PzrE-ASFnKqXas7QAvdWpLvyJcHX9o-Oq8ZHNENBVYRc0KlM=w1248-h583-no?authuser=0",
+    "screenshots": [
+      "https://lh3.googleusercontent.com/pw/AM-JKLU33uO3tKlWc5d1hei852NIo107wvS8yhU7LyMLtNczNuhEuSIWsZPJ-nc3YeRuCIVEZ69ITdxg86ZH4HoKfShxDraAOt68cpiRCtKYnsdeMzCYcSrxWUHTwkGoiUQYbPowx81yIyunoM8SrojT_4PA=w217-h633-no?authuser=0",
+      "https://lh3.googleusercontent.com/pw/AM-JKLWQRlxeQBBqfw0JF8I2GzeJL7WOrCZ9i3U0EWhzSNjHTPQLsr15of7JVmEFerwumsV0nugH1iGhn0wBlboo_j8Alfmp_6dqMJGvG73VeDk_Fwm2zFkYXX5CXchD8vWIR4awxztNjsRfkf00jXxV8oqz=w636-h633-no?authuser=0",
+      "https://lh3.googleusercontent.com/pw/AM-JKLWO-GIf_tjU8wSwfQapTHM4-eyBeqEJ34WKJZLg4CVMrSvmK3QZimsIcA4GfH1UDFoKHHPiv4x_AzFvMfN1EUJWuI_44_96c7lS4diP9U9j4Ak9fIylbXNfVkE41qVahUQY7KmpaejrLHio5F6zhORc=w308-h633-no?authuser=0"
+    ],
+    "overview": [
+      "This is a travel agency site",
+      " On this site, you can select a service and take a tour of beautiful places in Bangladesh",
+      "\n\nOn the homepage of the site, the header, the service section, the tour agent section, and the contact section are located",
+      "\n\nYou can book any service by clicking on the button book now",
+      " Then it goes to the route booking page and you can book the item providing your address and phone number",
+      "\n\nAfter booking the service, you can manage the service on my order page",
+      " You can delete the service",
+      " When the admin is approved, the status will be approved",
+      " Primary it pending",
+      "\n\nAnd the interesting part of the site is managing all orders page",
+      " Now it can access all users",
+      " It will be the admin part of the site",
+      " It can manage the order, can be approved, and delete the order and service",
+      "\n\nOn the other page is Insert Item",
+      " On this page, you can add a new service, that can show on the homepage",
+      " It will be the admin page",
+      "\n\nThe non-login user can only access the home page and about page",
+      " Another page can not be accessed by the nonlogin user",
+      "\nThis is a single-page application is created by the most powerful javascript library that's name is react",
+      "\n\nThe design part of the site is helping the react-bootstrap and raw CSS",
+      "\n\nSometimes used the react font awesome, react hooks form",
+      "\n\nOn the routing part of the site, I use the react-router-dom",
+      "\n\nFor authentication, I use the firebase that provides by google",
+      "\n\nFor the other part of the backend service, I used the express js, MongoDB, and MongoDB atlas for storing the database",
+      "\n\nAt least I host the server part hosting the Heroku site and set the URL on my website",
+      ""
+    ],
+    "technology": [
+      "React JS",
+      " Node JS",
+      " Mongo DB",
+      " Express",
+      " Firebase",
+      "Heroku",
+      "CSS",
+      "React-Bootstrap",
+      "React hooks form"
+    ],
+    "codeLink": [
+      "https://github.com/mdbappymia/travelBD-client",
+      "https://github.com/mdbappymia/travelBD-server"
+    ],
+    "liveLink": "https://travel-bangladesh-6624e.web.app"
+  },
+  {
+    "_id": "61a537f612b13bda4c5c16de",
+    "name": "Online School",
+    "subtitle": "MERN stack online course application",
+    "img": "https://i.ibb.co/ZfSMT1x/home.png",
+    "screenshots": [
+      "https://i.ibb.co/3mBj0ns/online-school-1.png",
+      " https://i.ibb.co/t8JW6wV/online-school-2.png ",
+      "https://i.ibb.co/P6nZWVf/online-school-3.png"
+    ],
+    "overview": [
+      "This is a simple online school site",
+      " In there are some courses that are shown on the homepage and service page",
+      " On the homepage, only 4 items are shown",
+      " The al item of course is shown on the service page",
+      " On the view course button, you can directly to the individual course and the details",
+      " You can find the enroll now button, you can click on this button",
+      " No money is needed",
+      " This site making by react js",
+      " React js is a powerful javascript library for single-page applications",
+      " For design purposes, I used the react-CSS framework as react-bootstrap",
+      " Then I used some raw CSS to customize the design of some components",
+      " This site is made on the basis of react-router",
+      " React router helps render specific components on the specific area without reloading the page",
+      " I used the hook of react-router-dom like as useParams, useHistory",
+      " To change the route instantly and show the specific item, I use the useParams hooks and show details of the specific item",
+      " This is a very simple site",
+      " I hope you enjoy it",
+      ""
+    ],
+    "technology": [
+      "React JS",
+      "Node JS",
+      " Express JS",
+      " Mongo DB",
+      " Firebase",
+      " Heroku",
+      " React hook form",
+      " React-Bootstrap",
+      " CSS"
+    ],
+    "codeLink": [
+      "https://github.com/mdbappymia/online-school",
+      "https://github.com/mdbappymia/online-school-server"
+    ],
+    "liveLink": "https://online-school-e657c.web.app/"
+  },
+  {
+    "_id": "61a53e8812b13bda4c5c16df",
+    "name": "Jonota Clinic",
+    "subtitle": "A medical Clinic Website",
+    "img": "https://i.ibb.co/k1Bjs3Z/home.png",
+    "screenshots": [
+      "https://i.ibb.co/kMtBcsd/jonota-clinic-1.png",
+      " https://i.ibb.co/PFGMJd8/jonota-clinic-3.png",
+      " https://i.ibb.co/D7sB9CL/jonota-clinic-2.png"
+    ],
+    "overview": [
+      "This site is a medical website named jonota clinic",
+      " This site is an imagination medical center",
+      " The data are note-related on the site",
+      " This data are collected on google",
+      "\n\nThis site has some pages",
+      " Like as home, about us, contact us, specialist and so on",
+      "\n\nThe navbar and footer are common on all page of the site",
+      "\n\nIn the homepage, the header section, the service section, the gallery section, and the review section are located",
+      " The service section has a button, you can click on this button, and see the all details of the service",
+      "\n\nThe gallery section has some interesting images that are related to the site",
+      "\n\nThe interesting part of this site is the review section",
+      " In this section, I use a carousel and show the data of a specific user",
+      "\nOn the site I made the most powerful javascript library name is react",
+      "\n\nThis is a single-page website",
+      " I applied the multiple-page behavior using react-router-dom",
+      " It is a very interesting thing on the react application",
+      "\n\nOn the site, the service details page is private",
+      " You cannot see the service details page without a login",
+      "\n\nOn this site, the login and sign-up the system are applied",
+      " The system applied I use the firebase",
+      "\n\nFor the overall design I used react-bootstrap and raw CSS",
+      " Sometimes I use the bootstrap class to apply some design",
+      "\n\nThe site is responsive for mobile and desktop"
+    ],
+    "technology": [
+      "React JS",
+      " Firebase",
+      " Firebase hosting",
+      " React-Bootstrap",
+      " React Routing",
+      " CSS",
+      " Context Api"
+    ],
+    "codeLink": ["https://github.com/mdbappymia/jonota-clinic", ""],
+    "liveLink": "https://jonota-clinic.web.app"
+  },
+  {
+    "_id": "61dc71421190e361c09f3fd7",
+    "name": "Red Onion Food",
+    "subtitle": "A restaurant web application",
+    "email": "mdbappymia.hstu@gmail.com",
+    "img": "https://i.ibb.co/L1Fgk9m/home.png",
+    "screenshots": [
+      "https://i.ibb.co/yWWgwqf/1.png ",
+      "https://i.ibb.co/H7b5wbx/2.png",
+      " https://i.ibb.co/DGtrXHG/3.png"
+    ],
+    "overview": [
+      "This is a simple restaurant app",
+      " It is created by the powerful javascript library react js",
+      " In this app, the homepage has some items that are divided into 3 categories",
+      " A user selects a category and selects the food for order",
+      " The select item is added to the cart",
+      " The total price and select item are shown on the header",
+      " The user can change or remove the item quantity to the order review page",
+      " Users can process to ship after login",
+      " Then the user gives some information and submits the order"
+    ],
+    "technology": [
+      "React JS",
+      " React router",
+      " React Bootstrap",
+      " Firebase",
+      " Firebase hosting",
+      " CSS"
+    ],
+    "codeLink": ["https://github.com/mdbappymia/hot-onion-restaurants"],
+    "liveLink": "https://hot-onion-restaurants-5e32c.web.app/"
+  },
+  {
+    "_id": "61e307463391b587300da971",
+    "name": "Product Management Inventory",
+    "subtitle": "Team Project by Md. Bappy Mia, Md. Shahriar Mehedi, Farshid Ahsan and Farjana Akter",
+    "email": "mdbappymia.hstu@gmail.com",
+    "img": "https://i.ibb.co/1Q189nf/home.png",
+    "screenshots": [
+      "https://i.ibb.co/FK37dZW/1.png",
+      "https://i.ibb.co/3NLv535/2.png",
+      "https://i.ibb.co/fDhZwSS/3.png"
+    ],
+    "overview": [
+      "Users will be able to login into an existing account or can create a new account",
+      "\nUser accounts can be maintained through Firebase",
+      "\nLogged-in users can only see their products in the inventory",
+      "\nBased on login information, the dashboard will be updated",
+      "\nUsers can log in or sign up using Google also",
+      "\nThe user can see the dashboard panel after a successful log-in to his account",
+      "\nThe dashboard panel contains information about users' uploaded product data",
+      "\nUsers can edit or delete any entry and the dashboard will update accordingly",
+      "\nLogged-in users can add products in this section",
+      "\nThe product input section will contain input fields like",
+      "\nProduct name, Amount, Image, Weight/Measurement, price, etc",
+      "\nData will store in the MongoDB database",
+      "\nProduct entry can be edited or deleted by a logged-in user",
+      "\nUpdating or deleting any product will immediately affect the product list and also affect the dashboard panel\n"
+    ],
+    "technology": [
+      "React JS",
+      " Node JS",
+      "Express JS",
+      " MongoDB",
+      " Trello",
+      " Firebase",
+      " Heroku",
+      " Particle JS",
+      " Tailwind",
+      " Material UI"
+    ],
+    "codeLink": [
+      "https://github.com/mdbappymia/product-management-client",
+      "https://github.com/mdbappymia/product-management-server"
+    ],
+    "liveLink": "https://productmanagement-23bf0.web.app/"
+  }
+]

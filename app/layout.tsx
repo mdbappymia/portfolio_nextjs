@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Exo } from "next/font/google";
 import "./globals.css";
 import "animate.css";
 import MainNavbar from "@/components/Shared/MainNavbar";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import MainFooter from "@/components/Shared/MainFooter";
 
-const font = Noto_Sans({
+const font = Exo({
   weight: "400",
   subsets: ["latin"],
 });

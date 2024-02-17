@@ -9,14 +9,13 @@ const RightLatestWork = () => {
   return (
     <Card className="rounded-3xl">
       <h1 className="text-2xl font-bold">
-        See My <span className="inline-block ml-5">Latest Works</span>
+        See My <span className="block ml-5">Latest Works</span>
       </h1>
       <Link href={"https://simple-quiz-b.web.app/"} target="_blank">
         <Image
           src={latestProject}
           alt="Latest project"
-          className="w-full rounded-xl"
-          height={150}
+          className="w-full rounded-xl lg:h-36 h-40"
         />
       </Link>
       <Link href={"/project"}>

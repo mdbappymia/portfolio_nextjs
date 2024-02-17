@@ -41,3 +41,16 @@ body {
   transition: box-shadow ease-in-out 0.5s;
   /* border: inset 5px white; */
 }
+.project_card:hover .project_card_overlay {
+  height: 100%;
+  opacity: 0.5;
+}
+.project_card:hover img {
+  transform: scale(105%);
+  transition: all ease-in-out 0.5s;
+}
+
+.project_card:hover .card_text {
+  opacity: 1;
+  transition: all ease-in-out 0.5s;
+}

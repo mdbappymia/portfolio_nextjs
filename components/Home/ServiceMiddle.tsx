@@ -13,24 +13,26 @@ const ServiceMiddle = () => {
   return (
     <Card className="rounded-3xl">
       <h1 className="font-bold text-2xl">Services Offering</h1>
-      <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 my-5">
-        <div className=" flex-col justify-center items-center flex">
-          <FaPenSquare className="text-5xl text-lime-600" />
-          <h1 className="text-sm font-bold mt-7">Web Design</h1>
+      <Link href={"/services"}>
+        <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 my-5">
+          <div className=" flex-col justify-center items-center flex">
+            <FaPenSquare className="text-5xl text-lime-600" />
+            <h1 className="text-sm font-bold mt-7">Web Design</h1>
+          </div>
+          <div className=" flex-col justify-center items-center flex">
+            <IoSettings className="text-5xl text-lime-600" />
+            <h1 className="text-sm font-bold mt-7">Development</h1>
+          </div>
+          <div className=" flex-col justify-center items-center flex">
+            <MdDeveloperMode className="text-5xl text-lime-600" />
+            <h1 className="text-sm font-bold mt-7">Software Dev</h1>
+          </div>
+          <div className=" flex-col justify-center items-center flex">
+            <DiGoogleAnalytics className="text-5xl text-lime-600" />
+            <h1 className="text-sm font-bold mt-7">Marketing</h1>
+          </div>
         </div>
-        <div className=" flex-col justify-center items-center flex">
-          <IoSettings className="text-5xl text-lime-600" />
-          <h1 className="text-sm font-bold mt-7">Development</h1>
-        </div>
-        <div className=" flex-col justify-center items-center flex">
-          <MdDeveloperMode className="text-5xl text-lime-600" />
-          <h1 className="text-sm font-bold mt-7">Software Dev</h1>
-        </div>
-        <div className=" flex-col justify-center items-center flex">
-          <DiGoogleAnalytics className="text-5xl text-lime-600" />
-          <h1 className="text-sm font-bold mt-7">Marketing</h1>
-        </div>
-      </div>
+      </Link>
       <div className="flex gap-5 my-8">
         <h1 className="font-bold text-3xl">Things I&apos;m good at</h1>
         <Image
@@ -41,7 +43,7 @@ const ServiceMiddle = () => {
           height={40}
         />
       </div>
-      <Link href={"/about"}>
+      <Link href={"/services"}>
         <div className="flex justify-between mx-5 font-bold hover:text-lime-500 my-10 text-lg">
           <h1>All Services</h1>
           <FaArrowUpRightFromSquare />

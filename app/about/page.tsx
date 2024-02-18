@@ -16,13 +16,15 @@ import { FaArrowLeft } from "react-icons/fa";
 const AboutPage = () => {
   return (
     <div>
-      <Link
-        href={"/"}
-        className="uppercase font-bold text-md flex items-center"
-      >
-        <FaArrowLeft className="inline-block mr-3" /> Back to{" "}
-        <span className="text-lime-500 inline-block ml-2">home</span>
-      </Link>
+      <div className="inline-block">
+        <Link
+          href={"/"}
+          className="uppercase font-bold text-md flex items-center"
+        >
+          <FaArrowLeft className="inline-block mr-3" /> Back to{" "}
+          <span className="text-lime-500 inline-block ml-2">home</span>
+        </Link>
+      </div>
       <div className="my-3">
         <div className="lg:grid grid-cols-3 gap-3">
           <div className="col-span-2 mb-3 lg:mb-0">

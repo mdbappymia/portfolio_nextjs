@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "61a3b0e115c611360fa0e1d5",
+    "name": "Web Design",
+    "icon": "fas fa-pencil-alt",
+    "description": "High-quality web design service with 24-hour support. Highly satisfaction and money-back guarantee.\n",
+    "email": "bappy@gmail.com"
+  },
+  {
+    "_id": "61a3b1f415c611360fa0e1d6",
+    "name": "Web Development",
+    "icon": "fab fa-codepen",
+    "description": "If you want to develop an interactive react js web app from scratch or customize the existing application.",
+    "email": "bappy@gmail.com"
+  },
+  {
+    "_id": "61a3b2b815c611360fa0e1d7",
+    "name": "App Development",
+    "icon": "fab fa-android",
+    "description": "Do not worry about the quality of your app as I like to do things as perfect as possible.",
+    "email": "bappy@gmail.com"
+  },
+  {
+    "_id": "61a3b30f15c611360fa0e1d8",
+    "name": "Marketing",
+    "icon": "fas fa-poll",
+    "description": "I am here to assist you as a social media marketing manager. I'll take better care of your business and ensure quality.",
+    "email": "bappy@gmail.com"
+  }
+]

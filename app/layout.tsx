@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import type { Metadata } from "next";
 import { Exo } from "next/font/google";
 import "./globals.css";
@@ -36,6 +37,10 @@ export default function RootLayout({
             <MainFooter />
           </div>
         </Flowbite>
+        <script
+          src="https://kit.fontawesome.com/19f635731a.js"
+          crossOrigin="anonymous"
+        ></script>
       </body>
     </html>
   );

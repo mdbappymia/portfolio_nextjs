@@ -5,18 +5,19 @@ import { FaArrowLeft } from "react-icons/fa";
 import projects from "@/public/data/projects.json";
 
 const ProjectPage = () => {
-  // console.log(projects);
   const firstFourProjects = projects.slice(0, 4);
   const remainingProjects = projects.slice(4);
   return (
     <div>
-      <Link
-        href={"/"}
-        className="uppercase font-bold text-md flex items-center"
-      >
-        <FaArrowLeft className="inline-block mr-3" /> Back to{" "}
-        <span className="text-lime-500 inline-block ml-2">home</span>
-      </Link>
+      <div className="inline-block">
+        <Link
+          href={"/"}
+          className="uppercase font-bold text-md flex items-center"
+        >
+          <FaArrowLeft className="inline-block mr-3" /> Back to{" "}
+          <span className="text-lime-500 inline-block ml-2">home</span>
+        </Link>
+      </div>
       <div className="my-5">
         <div className="lg:grid grid-cols-2 gap-3 mb-3">
           <div>

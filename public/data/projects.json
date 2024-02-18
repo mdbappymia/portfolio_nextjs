@@ -75,8 +75,7 @@
       "\n\nOn the routing part of the site, I use the react-router-dom",
       "\n\nFor authentication, I use the firebase that provides by google",
       "\n\nFor the other part of the backend service, I used the express js, MongoDB, and MongoDB atlas for storing the database",
-      "\n\nAt least I host the server part hosting the Heroku site and set the URL on my website",
-      ""
+      "\n\nAt least I host the server part hosting the Heroku site and set the URL on my website"
     ],
     "technology": [
       "React JS",
@@ -122,8 +121,7 @@
       " I used the hook of react-router-dom like as useParams, useHistory",
       " To change the route instantly and show the specific item, I use the useParams hooks and show details of the specific item",
       " This is a very simple site",
-      " I hope you enjoy it",
-      ""
+      " I hope you enjoy it"
     ],
     "technology": [
       "React JS",

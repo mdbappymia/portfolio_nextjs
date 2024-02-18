@@ -10,10 +10,12 @@ import catagories from "@/public/data/blog_catagory.json";
 const BlogPage = () => {
   const [page, setPage] = useState<any>(1);
   const [hiddenBtn, setHiddenBtn] = useState<boolean>(false);
-  const [catagory, setCatagory] = useState<any>(
-    sessionStorage.getItem("catagory") || "all"
-  );
+  const [catagory, setCatagory] = useState<any>("");
   const [displayBlog, setDisplayBlog] = useState<any>([]);
+
+  useEffect(() => {
+    setCatagory(() => sessionStorage.getItem("catagory") || "all");
+  }, []);
 
   useEffect(() => {
     setDisplayBlog(blogs.slice(0, page * 4));
@@ -33,7 +35,9 @@ const BlogPage = () => {
     }
   };
   const handleCatagory = (ctg: string) => {
-    sessionStorage.setItem("catagory", ctg);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("catagory", ctg);
+    }
     setCatagory(() => ctg);
   };
   return (

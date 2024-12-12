@@ -20,7 +20,7 @@ export async function middleware(req: NextRequest) {
       new TextEncoder().encode(NEXTAUTH_SECRET)
     );
 
-    console.log("Token payload:", payload); // Optional: Log payload if needed
+    // console.log("Token payload:", payload); // Optional: Log payload if needed
 
     // Allow access to the protected route
     return NextResponse.next();

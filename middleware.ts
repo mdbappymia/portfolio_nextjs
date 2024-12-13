@@ -5,18 +5,18 @@ import { jwtVerify } from "jose";
 const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || "your_NEXTAUTH_SECRET";
 
 export async function middleware(req: NextRequest) {
-  const token =
-    req.cookies.get("token")?.value ||
-    req.headers.get("Authorization")?.replace("Bearer ", "");
+  const accessToken = req.cookies.get("access_token")?.value;
 
-  if (!token) {
+  const refreshToken = req.cookies.get("refresh_token")?.value;
+
+  if (!accessToken) {
     return NextResponse.redirect(new URL("/signin", req.url));
   }
 
   try {
     // Verify the JWT using the secret
     const { payload } = await jwtVerify(
-      token,
+      accessToken,
       new TextEncoder().encode(NEXTAUTH_SECRET)
     );
 
@@ -25,6 +25,17 @@ export async function middleware(req: NextRequest) {
     // Allow access to the protected route
     return NextResponse.next();
   } catch (error) {
+    try {
+      if (refreshToken) {
+        const { payload } = await jwtVerify(
+          refreshToken,
+          new TextEncoder().encode(NEXTAUTH_SECRET)
+        );
+        return NextResponse.next();
+      }
+    } catch (error) {
+      console.error("Invalid token:", error);
+    }
     console.error("Invalid token:", error);
     return NextResponse.redirect(new URL("/signin", req.url));
   }

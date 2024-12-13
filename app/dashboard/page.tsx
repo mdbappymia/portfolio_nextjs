@@ -4,7 +4,7 @@ import { useAppSelector } from "@/redux/store";
 
 export default function DashboardPage() {
   const user = useAppSelector((state) => state.user);
-  console.log(user);
+  // console.log(user);
 
   return (
     <div>

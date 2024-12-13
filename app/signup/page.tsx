@@ -1,7 +1,8 @@
 "use client";
 
+import { useAppSelector } from "@/redux/store";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SignupPage() {
   const [name, setName] = useState("");
@@ -10,6 +11,8 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const user = useAppSelector((state) => state.user);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +52,13 @@ export default function SignupPage() {
 
     setLoading(false);
   };
-
+  useEffect(() => {
+    if (user.email?.length && user.email?.length > 5) {
+      // console.log(user);
+      console.log("Inside the user condition");
+      return router.push("/dashboard");
+    }
+  }, [router, user]);
   return (
     <div style={{ maxWidth: "400px", margin: "auto", padding: "20px" }}>
       <h1>Sign Up</h1>

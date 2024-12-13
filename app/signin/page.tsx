@@ -1,7 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode";
+import { clearUser, setUser } from "@/redux/slices/userSlice";
+import { useAppSelector } from "@/redux/store";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -9,6 +13,9 @@ export default function SignInPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const user = useAppSelector((state) => state.user);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,12 +36,21 @@ export default function SignInPage() {
 
       if (response.ok) {
         // Store the token in localStorage or cookies
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("access_token", data.token);
         // Redirect to a protected route or dashboard
-
+        const decodedToken: any = jwtDecode(data.token);
+        const decodeUser = data.user;
+        dispatch(
+          setUser({
+            email: decodedToken.email,
+            name: decodeUser.name,
+            role: decodeUser.role || "user",
+          })
+        );
         router.push("/dashboard");
       } else {
         setError(data.error || "Invalid credentials");
+        dispatch(clearUser());
       }
     } catch (err) {
       setError("Unable to connect. Please try again later.");
@@ -42,6 +58,14 @@ export default function SignInPage() {
 
     setLoading(false);
   };
+
+  useEffect(() => {
+    if (user.email?.length && user.email?.length > 5) {
+      // console.log(user);
+      console.log("Inside the user condition");
+      return router.push("/dashboard");
+    }
+  }, [router, user]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

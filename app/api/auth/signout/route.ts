@@ -10,7 +10,8 @@ export async function POST(req: Request) {
 
   try {
     const cookieStore = await cookies();
-    cookieStore.set("token", "");
+    cookieStore.set("access_token", "");
+    cookieStore.set("refresh_token", "");
     return NextResponse.json({ message: "Logout successful" });
   } catch (error) {
     console.error("Error logging in:", error);

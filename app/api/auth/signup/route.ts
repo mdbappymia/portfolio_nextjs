@@ -1,6 +1,5 @@
 import { connectToDatabase } from "@/lib/connectToDB";
 import UserModel from "@/models/userModel";
-import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
 // The handler for the API route
@@ -25,12 +24,10 @@ export async function POST(req: Request) {
       );
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     const newUser = new UserModel({
       name,
       email,
-      password: hashedPassword,
+      password: password,
     });
 
     await newUser.save();

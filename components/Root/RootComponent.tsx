@@ -7,7 +7,6 @@ import MainFooter from "../Shared/MainFooter";
 import { useRouter } from "next/navigation";
 import { clearUser, setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
-// import { SessionProvider } from "next-auth/react";
 import { setUserIsloading } from "@/redux/slices/loadingSlice";
 
 const RootComponent = ({ children }: any) => {
@@ -108,7 +107,6 @@ const RootComponent = ({ children }: any) => {
   };
 
   return (
-    // <SessionProvider>
     <Flowbite>
       <div className="container mx-auto px-2">
         <MainNavbar />
@@ -116,7 +114,6 @@ const RootComponent = ({ children }: any) => {
         <MainFooter />
       </div>
     </Flowbite>
-    // </SessionProvider>
   );
 };
 

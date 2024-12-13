@@ -62,7 +62,7 @@ export default function SignInPage() {
   useEffect(() => {
     if (user.email?.length && user.email?.length > 5) {
       // console.log(user);
-      console.log("Inside the user condition");
+      // console.log("Inside the user condition");
       return router.push("/dashboard");
     }
   }, [router, user]);

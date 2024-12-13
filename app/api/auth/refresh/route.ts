@@ -13,7 +13,11 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   const refreshToken: any = cookieStore.get("refresh_token")?.value;
 
   if (!refreshToken) {
-    return res.status(401).json({ error: "No refresh token found" });
+    // return res.status(401).json({ error: "No refresh token found" });
+    return NextResponse.json(
+      { error: "No refresh token found" },
+      { status: 401 }
+    );
   }
 
   try {

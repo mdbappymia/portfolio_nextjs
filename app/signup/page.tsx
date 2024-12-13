@@ -40,7 +40,6 @@ export default function SignupPage() {
       });
 
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         router.push("/signin");
       } else {
@@ -52,51 +51,66 @@ export default function SignupPage() {
 
     setLoading(false);
   };
+
   useEffect(() => {
     if (user.email?.length && user.email?.length > 5) {
-      // console.log(user);
-      console.log("Inside the user condition");
-      return router.push("/dashboard");
+      router.push("/dashboard");
     }
   }, [router, user]);
+
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", padding: "20px" }}>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Signing up..." : "Sign Up"}
-        </button>
-        {error && (
-          <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
-        )}
-      </form>
+    <div className="_75vh flex justify-center items-center">
+      <div className="w-96 mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
+        <h1 className="text-center text-2xl font-bold text-gray-800 mb-6">
+          Sign Up
+        </h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-gray-600 mb-2">Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-600 mb-2">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-600 mb-2">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full px-4 py-2 text-white font-bold rounded-md ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-600"
+            }`}
+          >
+            {loading ? "Signing up..." : "Sign Up"}
+          </button>
+          {error && (
+            <div className="text-red-500 mt-4 text-center">{error}</div>
+          )}
+        </form>
+      </div>
     </div>
   );
 }

@@ -27,7 +27,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
     return NextResponse.json({ user: user }, { status: 200 });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return NextResponse.json(
       { error: "Failed to fetch users" },
       { status: 500 }

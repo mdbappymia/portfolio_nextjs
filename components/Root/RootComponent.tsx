@@ -18,7 +18,7 @@ const RootComponent = ({ children }: any) => {
       const getUser: any = data;
       // console.log(getUser);
       if (!getUser.email) {
-        console.log("Get useremail ");
+        // console.log("Get useremail ");
         refreshAccessToken();
         return;
       }
@@ -35,7 +35,7 @@ const RootComponent = ({ children }: any) => {
           return;
         } catch (error) {
           // dispatch(clearUser());
-          console.log(error);
+          // console.log(error);
         }
       } else {
         dispatch(clearUser());

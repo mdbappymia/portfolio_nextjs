@@ -21,7 +21,6 @@ const userSchema = new Schema<IUserDocument>({
 });
 
 userSchema.pre("save", async function (next) {
-  console.log(this.password);
   if (!this.isModified("password")) {
     return next();
   }
@@ -35,7 +34,9 @@ userSchema.methods.isValidPassword = async function (password: string) {
   return bcrypt.compare(password, this.password);
 };
 
+// console.log("UserModel Initialized:", !!mongoose.models);
 const UserModel: Model<IUserDocument> =
-  mongoose.models.User || mongoose.model<IUserDocument>("User", userSchema);
+  (mongoose.models && mongoose.models.User) ||
+  mongoose.model<IUserDocument>("User", userSchema);
 
 export default UserModel;

@@ -6,6 +6,8 @@ import "animate.css";
 import MainNavbar from "@/components/Shared/MainNavbar";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import MainFooter from "@/components/Shared/MainFooter";
+import StoreProvider from "./StoreProvider";
+import RootComponent from "@/components/Root/RootComponent";
 
 const font = Exo({
   weight: "400",
@@ -30,13 +32,16 @@ export default function RootLayout({
       <body
         className={`${font.className} dark:bg-gray-900 dark:text-white bg-gray-200`}
       >
-        <Flowbite>
-          <div className="container mx-auto px-2">
-            <MainNavbar />
-            {children}
-            <MainFooter />
-          </div>
-        </Flowbite>
+        <StoreProvider>
+          {/* <Flowbite>
+            <div className="container mx-auto px-2">
+              <MainNavbar />
+              {children}
+              <MainFooter />
+            </div>
+          </Flowbite> */}
+          <RootComponent>{children}</RootComponent>
+        </StoreProvider>
         <script
           src="https://kit.fontawesome.com/19f635731a.js"
           crossOrigin="anonymous"

@@ -7,6 +7,7 @@ interface IUser {
   email: string;
   password: string;
   createdAt?: Date; // Optional: Store account creation time
+  role: string;
 }
 
 interface IUserDocument extends IUser, Document {}
@@ -15,10 +16,12 @@ const userSchema = new Schema<IUserDocument>({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  role: { type: String, default: "user", required: true },
   createdAt: { type: Date, default: Date.now }, // Automatically set when the user is created
 });
 
 userSchema.pre("save", async function (next) {
+  console.log(this.password);
   if (!this.isModified("password")) {
     return next();
   }

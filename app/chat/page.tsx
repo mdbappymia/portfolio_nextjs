@@ -2,58 +2,59 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [userMessage, setUserMessage] = useState<string>("");
-  const [chatResponse, setChatResponse] = useState<string>("");
-  const sendMessage = async () => {
-    if (!userMessage.trim()) return;
+  const [message, setMessage] = useState("");
+  const [reply, setReply] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      //   console.log(userMessage);
-      const response = await fetch("/api/openai", {
+      const res = await fetch("/api/openai", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message }),
       });
 
-      const data = await response.json();
-      if (data.reply) {
-        setChatResponse(data.reply);
+      const data = await res.json();
+
+      if (res.ok) {
+        setReply(data.reply);
       } else {
-        setChatResponse("No response from ChatGPT.");
+        setReply("Error: " + data.error);
       }
     } catch (error) {
-      console.error("Error sending message:", error);
-      setChatResponse("Error: Unable to connect to the server.");
+      console.error(error);
+      setReply("Failed to fetch response");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h1>Chat with ChatGPT</h1>
-      <textarea
-        value={userMessage}
-        onChange={(e) => setUserMessage(e.target.value)}
-        placeholder="Type your message here..."
-        rows={4}
-        style={{ width: "100%", marginBottom: "10px" }}
-      />
-      <button
-        onClick={sendMessage}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#0070f3",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
-        Send
-      </button>
-      <div style={{ marginTop: "20px", fontWeight: "bold" }}>
-        <p>ChatGPT Response:</p>
-        <p>{chatResponse}</p>
-      </div>
+    <div>
+      <h1>Chat with Hugging Face</h1>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          rows={4}
+          cols={50}
+          placeholder="Type your message here"
+        />
+        <br />
+        <button type="submit" disabled={loading}>
+          {loading ? "Sending..." : "Send"}
+        </button>
+      </form>
+      {reply && (
+        <p>
+          <strong>Reply:</strong> {reply}
+        </p>
+      )}
     </div>
   );
 }

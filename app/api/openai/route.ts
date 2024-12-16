@@ -1,34 +1,52 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
-import { OpenAI } from "openai"; // Updated import
+import axios from "axios";
 
-// Initialize OpenAI with API Key from environment variable
-const openai = new OpenAI({
-  apiKey: process.env.OPEN_AI_KEY!,
-});
+// Get Hugging Face API key from environment variables
+const HUGGINGFACE_API_KEY = process.env.HUGGINGFACE_API_KEY;
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  const { message } = req.body;
-  console.log(req.body);
-  //   if (!message) {
-  //     //return res.status(400).json({ error: "Message is required" });
-  //     return NextResponse.json({ error: "Message is required" }, { status: 400 });
-  //   }
+if (!HUGGINGFACE_API_KEY) {
+  throw new Error(
+    "Hugging Face API key is missing. Please add it to the environment variables."
+  );
+}
+
+export async function POST(req: Request) {
+  const { message } = await req.json();
+
+  // Ensure the message exists
+  if (!message) {
+    return NextResponse.json({ error: "Message is required" }, { status: 400 });
+  }
 
   try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // Updated to GPT-3.5
-      messages: [{ role: "user", content: message }],
-    });
+    // Make a POST request to Hugging Face Inference API
+    const response = await axios.post(
+      "https://api-inference.huggingface.co/models/gpt2", // You can replace 'gpt2' with any model name you want
+      { inputs: message },
+      {
+        headers: {
+          Authorization: `Bearer ${HUGGINGFACE_API_KEY}`,
+        },
+      }
+    );
 
-    const reply = response.choices[0]?.message?.content;
-    // res.status(200).json({ reply });
+    // Extract the generated text from the response
+    const reply = response.data[0]?.generated_text;
+
+    if (!reply) {
+      return NextResponse.json(
+        { error: "No reply from Hugging Face" },
+        { status: 500 }
+      );
+    }
+
+    // Return the response from Hugging Face
     return NextResponse.json({ reply }, { status: 200 });
   } catch (error) {
-    console.error("Error communicating with OpenAI:", error);
-    // res.status(500).json({ error: "Failed to fetch response from OpenAI" });
+    console.error("Error communicating with Hugging Face:", error);
     return NextResponse.json(
-      { error: "Failed to fetch response from OpenAI" },
+      { error: "Failed to fetch response from Hugging Face" },
       { status: 500 }
     );
   }

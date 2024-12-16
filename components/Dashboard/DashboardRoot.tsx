@@ -26,7 +26,7 @@ const DashboardRoot = ({ children }: any) => {
             <Sidebar.Items>
               <Sidebar.ItemGroup>
                 <Sidebar.Item as={Link} href="/dashboard" icon={HiChartPie}>
-                  Dashboard
+                  {!hideBar && "Dashboard"}
                 </Sidebar.Item>
                 <Sidebar.Item
                   href="/dashboard/about"

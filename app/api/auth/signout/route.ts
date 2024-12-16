@@ -1,8 +1,5 @@
-import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
 import { connectToDatabase } from "@/lib/connectToDB";
-import UserModel from "@/models/userModel";
 import { cookies } from "next/headers";
 
 export async function POST(req: Request) {

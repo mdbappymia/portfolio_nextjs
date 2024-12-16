@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-sync-scripts */
 "use client";
 
-import DashboardRoot from "@/components/Dashboard/DashboardRoot";
 import { useAppSelector } from "@/redux/store";
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -15,11 +14,13 @@ export default function RootLayout({
   const user = useAppSelector((state) => state.user);
   const userIsLoading = useAppSelector((state) => state.loading.userIsloading);
   const router = useRouter();
-
+  console.log(user);
   // Redirect unauthenticated users to "/signin"
   useEffect(() => {
-    if (!userIsLoading && !user.email) {
-      router.push("/signin");
+    if (!userIsLoading && !user.email?.length) {
+      router.push("/signup");
+    } else {
+      router.push("/dashboard");
     }
   }, [router, user.email, userIsLoading]);
 
@@ -28,7 +29,5 @@ export default function RootLayout({
   }
 
   // Render children only if the user is authenticated
-  return (
-    <div>{user.email ? <DashboardRoot>{children}</DashboardRoot> : null}</div>
-  );
+  return <div>{!user.email ? children : null}</div>;
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { Flowbite } from "flowbite-react";
+import { Flowbite, Spinner } from "flowbite-react";
 import React, { useEffect } from "react";
 import MainNavbar from "../Shared/MainNavbar";
 import MainFooter from "../Shared/MainFooter";
@@ -8,10 +8,13 @@ import { useRouter } from "next/navigation";
 import { clearUser, setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { setUserIsloading } from "@/redux/slices/loadingSlice";
+import { useAppSelector } from "@/redux/store";
 
 const RootComponent = ({ children }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const user = useAppSelector((state) => state.user);
+  const userIsLoading = useAppSelector((state) => state.loading.userIsloading);
 
   useEffect(() => {
     dispatch(setUserIsloading(true));
@@ -108,11 +111,21 @@ const RootComponent = ({ children }: any) => {
 
   return (
     <Flowbite>
-      <div className="container mx-auto px-2">
-        <MainNavbar />
-        {children}
-        <MainFooter />
-      </div>
+      {userIsLoading ? (
+        <div className="text-center h-screen flex items-center w-full justify-center">
+          <Spinner
+            aria-label="Center-aligned spinner example"
+            size="xl"
+            className="font-bold"
+          />
+        </div>
+      ) : (
+        <div className="container mx-auto px-2">
+          <MainNavbar />
+          {children}
+          <MainFooter />
+        </div>
+      )}
     </Flowbite>
   );
 };

@@ -1,11 +1,33 @@
 "use client";
 
+import { clearUser } from "@/redux/slices/userSlice";
+import { useAppSelector } from "@/redux/store";
 import { Button, DarkThemeToggle, Navbar } from "flowbite-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 export default function MainNavbar() {
   const pathname = usePathname();
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const signOut = async () => {
+    try {
+      const response = await fetch("/api/auth/signout", {
+        method: "POST",
+      });
+      const result = await response.json();
+      if (response.ok) {
+        dispatch(clearUser());
+      } else {
+        console.log("Something with wrong");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Navbar
       className="my-5 inset_card_shadow py-6 lg:!px-10 !px-5 rounded-3xl border-gray-300 border"
@@ -18,9 +40,18 @@ export default function MainNavbar() {
         Bappy
       </Link>
       <div className="flex md:order-2">
-        <Button color="lime" pill className="px-5 mx-2">
-          Let&apos;s Talk
-        </Button>
+        {user.email && user.email?.length > 0 ? (
+          <Button onClick={signOut} color="red" pill className="px-5 mx-2">
+            Log Out
+          </Button>
+        ) : (
+          <Link href="/contact">
+            <Button color="lime" pill className="px-5 mx-2">
+              Let&apos;s Talk
+            </Button>
+          </Link>
+        )}
+
         <DarkThemeToggle />
 
         <Navbar.Toggle />

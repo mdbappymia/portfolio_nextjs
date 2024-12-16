@@ -2,7 +2,7 @@
 import { useAppSelector } from "@/redux/store";
 import React from "react";
 
-const DashboardPage = () => {
+const DashboardHome = () => {
   const user = useAppSelector((state) => state.user);
   // console.log(user);
   return (
@@ -13,4 +13,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default DashboardHome;

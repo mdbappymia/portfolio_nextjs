@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import UserModel from "@/models/userModel";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import mongoose from "mongoose";
 
 const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || "your_NEXTAUTH_SECRET";
 
@@ -23,10 +24,13 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   try {
     // Verify the refresh token
     const decoded: any = jwt.verify(refreshToken, NEXTAUTH_SECRET);
-    const user: any = await UserModel.findOne({ email: decoded.email });
+    let user: any = {};
+    if (mongoose.models.User) {
+      user = await UserModel.findOne({ email: decoded.email });
+    }
     // console.log(decoded.password);
     // console.log(user);
-    if (user.password != decoded.password) {
+    if (user.password && user.password != decoded.password) {
       return NextResponse.json(
         { error: "Invalid credentials" },
         { status: 401 }

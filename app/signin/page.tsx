@@ -40,6 +40,7 @@ export default function SignInPage() {
         // Redirect to a protected route or dashboard
         const decodedToken: any = jwtDecode(data.token);
         const decodeUser = data.user;
+        // console.log(data.user);
         dispatch(
           setUser({
             email: decodedToken.email,

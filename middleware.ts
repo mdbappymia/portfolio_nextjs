@@ -8,7 +8,6 @@ export async function middleware(req: NextRequest) {
   const accessToken = req.cookies.get("access_token")?.value;
 
   const refreshToken = req.cookies.get("refresh_token")?.value;
-
   if (!accessToken) {
     return NextResponse.redirect(new URL("/signin", req.url));
   }
@@ -20,9 +19,10 @@ export async function middleware(req: NextRequest) {
       new TextEncoder().encode(NEXTAUTH_SECRET)
     );
 
-    // console.log("Token payload:", payload); // Optional: Log payload if needed
-
     // Allow access to the protected route
+    if (!payload.email) {
+      return NextResponse.redirect(new URL("/signin", req.url));
+    }
     return NextResponse.next();
   } catch (error) {
     try {
@@ -31,12 +31,16 @@ export async function middleware(req: NextRequest) {
           refreshToken,
           new TextEncoder().encode(NEXTAUTH_SECRET)
         );
+
+        if (!payload.email) {
+          return NextResponse.redirect(new URL("/signin", req.url));
+        }
         return NextResponse.next();
       }
     } catch (error) {
-      console.error("Invalid token:", error);
+      // console.error("Invalid token:", error);
     }
-    console.error("Invalid token:", error);
+    // console.error("Invalid token:", error);
     return NextResponse.redirect(new URL("/signin", req.url));
   }
 }

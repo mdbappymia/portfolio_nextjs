@@ -7,12 +7,14 @@ import MainFooter from "../Shared/MainFooter";
 import { useRouter } from "next/navigation";
 import { clearUser, setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
+import { setUserIsloading } from "@/redux/slices/loadingSlice";
 
 const RootComponent = ({ children }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
+    dispatch(setUserIsloading(true));
     assignUser().then((data) => {
       // console.log(data);
       const getUser: any = data;
@@ -20,6 +22,7 @@ const RootComponent = ({ children }: any) => {
       if (!getUser.email) {
         // console.log("Get useremail ");
         refreshAccessToken();
+        dispatch(setUserIsloading(false));
         return;
       }
       // Check if the access token is available
@@ -32,12 +35,15 @@ const RootComponent = ({ children }: any) => {
               role: getUser.role,
             })
           );
+          dispatch(setUserIsloading(false));
           return;
         } catch (error) {
           // dispatch(clearUser());
           // console.log(error);
+          dispatch(setUserIsloading(false));
         }
       } else {
+        dispatch(setUserIsloading(false));
         dispatch(clearUser());
       }
     });

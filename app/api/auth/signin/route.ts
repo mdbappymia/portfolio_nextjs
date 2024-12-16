@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   await connectToDatabase(); // Connect to MongoDB
 
   const { email, password } = await req.json();
-
+  // console.log(email, password);
   // Check if email and password are provided
   if (!email || !password) {
     return NextResponse.json(
@@ -80,6 +80,7 @@ export async function POST(req: Request) {
 
     cookieStore.set("access_token", token);
     // Send access token as response
+    // console.log(isPasswordValid);
     return NextResponse.json({ message: "Login successful", token, user });
   } catch (error) {
     console.error("Error logging in:", error);

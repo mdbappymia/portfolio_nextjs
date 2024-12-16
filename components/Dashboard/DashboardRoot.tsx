@@ -2,7 +2,8 @@
 
 import { Sidebar } from "flowbite-react";
 import Link from "next/link";
-import { BiHome, BiLogoBlogger, BiPlus } from "react-icons/bi";
+import { useState } from "react";
+import { BiArrowBack, BiHome, BiLogoBlogger, BiPlus } from "react-icons/bi";
 import {
   HiArrowSmRight,
   HiChartPie,
@@ -13,11 +14,15 @@ import {
 } from "react-icons/hi";
 
 const DashboardRoot = ({ children }: any) => {
+  const [hideBar, setHideBar] = useState<boolean>(false);
   return (
     <div className="_75vh">
       <div className="flex gap-5">
-        <div>
-          <Sidebar aria-label="Default sidebar example" className="_75vh">
+        <div className="relative">
+          <Sidebar
+            aria-label="Default sidebar example"
+            className={"_75vh " + (hideBar && "w-16")}
+          >
             <Sidebar.Items>
               <Sidebar.ItemGroup>
                 <Sidebar.Item as={Link} href="/dashboard" icon={HiChartPie}>
@@ -48,7 +53,11 @@ const DashboardRoot = ({ children }: any) => {
                   >
                     Blog
                   </Sidebar.Item>
-                  <Sidebar.Item href="#" icon={BiPlus}>
+                  <Sidebar.Item
+                    as={Link}
+                    href="/dashboard/blog/add_blog"
+                    icon={BiPlus}
+                  >
                     Add New
                   </Sidebar.Item>
                 </Sidebar.Collapse>
@@ -72,8 +81,14 @@ const DashboardRoot = ({ children }: any) => {
               </Sidebar.ItemGroup>
             </Sidebar.Items>
           </Sidebar>
+          <div
+            className="bg-black text-white p-5 rounded-full inline-block absolute top-0 right-0"
+            onClick={() => setHideBar((a) => !a)}
+          >
+            <BiArrowBack />
+          </div>
         </div>
-        <div>{children}</div>
+        <div className="w-full">{children}</div>
       </div>
     </div>
   );

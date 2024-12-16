@@ -1,7 +1,8 @@
 "use client";
 
 import { Sidebar } from "flowbite-react";
-import { BiHome } from "react-icons/bi";
+import Link from "next/link";
+import { BiHome, BiLogoBlogger, BiPlus } from "react-icons/bi";
 import {
   HiArrowSmRight,
   HiChartPie,
@@ -19,30 +20,53 @@ const DashboardRoot = ({ children }: any) => {
           <Sidebar aria-label="Default sidebar example" className="_75vh">
             <Sidebar.Items>
               <Sidebar.ItemGroup>
-                <Sidebar.Item href="#" icon={HiChartPie}>
+                <Sidebar.Item as={Link} href="/dashboard" icon={HiChartPie}>
                   Dashboard
                 </Sidebar.Item>
                 <Sidebar.Item
-                  href="#"
+                  href="/dashboard/about"
                   icon={HiViewBoards}
                   label="Pro"
                   labelColor="dark"
+                  as={Link}
                 >
                   About
                 </Sidebar.Item>
-                <Sidebar.Item href="#" icon={HiInbox} label="3">
+                <Sidebar.Item
+                  href="/dashboard/project"
+                  icon={HiInbox}
+                  label="3"
+                  as={Link}
+                >
                   Project
                 </Sidebar.Item>
-                <Sidebar.Item href="#" icon={HiUser}>
-                  Blog
-                </Sidebar.Item>
-                <Sidebar.Item href="#" icon={HiShoppingBag}>
+                <Sidebar.Collapse icon={HiShoppingBag} label="Blog Page">
+                  <Sidebar.Item
+                    as={Link}
+                    href="/dashboard/blog"
+                    icon={BiLogoBlogger}
+                  >
+                    Blog
+                  </Sidebar.Item>
+                  <Sidebar.Item href="#" icon={BiPlus}>
+                    Add New
+                  </Sidebar.Item>
+                </Sidebar.Collapse>
+                <Sidebar.Item
+                  as={Link}
+                  href="/dashboard/service"
+                  icon={HiShoppingBag}
+                >
                   Services
                 </Sidebar.Item>
-                <Sidebar.Item href="#" icon={HiArrowSmRight}>
+                <Sidebar.Item
+                  as={Link}
+                  href="/dashboard/contact"
+                  icon={HiArrowSmRight}
+                >
                   Contact
                 </Sidebar.Item>
-                <Sidebar.Item href="/" icon={BiHome}>
+                <Sidebar.Item as={Link} href="/" icon={BiHome}>
                   Home
                 </Sidebar.Item>
               </Sidebar.ItemGroup>

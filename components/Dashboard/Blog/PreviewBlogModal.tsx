@@ -26,7 +26,7 @@ const PreviewBlogModal = ({
     }
   }, [blogCover]);
 
-  console.log(process.env.NEXT_PUBLIC_ROOT_URL);
+  // console.log(process.env.NEXT_PUBLIC_ROOT_URL);
   return (
     <Modal show={openModal} onClose={() => setOpenModal(false)} size="6xl">
       <Modal.Header>{blogTitle || "[Title missing]"}</Modal.Header>
@@ -34,8 +34,8 @@ const PreviewBlogModal = ({
         <div className="space-y-6">
           <div className="relative w-full h-[500px]">
             <Image
-              // src={coverSrc}
-              src={require("/public/uploads/1734450344015_image.jpg")}
+              src={coverSrc}
+              // src={require("/public/uploads/1734450344015_image.jpg")}
               alt="Blog Cover"
               layout="fill" // Ensures the image stretches to cover the container
               objectFit="cover" // Crops the image to fit the container proportionally

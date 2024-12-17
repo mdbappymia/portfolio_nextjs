@@ -33,7 +33,7 @@ const QuillEditor = () => {
   const handleEditorChange = (value: string) => {
     setEditorContent(value);
   };
-  console.log(process.env.NEXT_PUBLIC_ROOT_URL);
+  // console.log(process.env.NEXT_PUBLIC_ROOT_URL);
   const handleSubmit = () => {
     const confirm = window.confirm("Are you sure?");
     console.log(confirm);

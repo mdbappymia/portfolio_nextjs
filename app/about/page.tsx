@@ -10,7 +10,6 @@ import WhatIdo from "@/components/About/WhatIdo";
 import WorkTogather from "@/components/About/WorkTogather";
 import Link from "next/link";
 import React from "react";
-import { BiLeftArrow } from "react-icons/bi";
 import { FaArrowLeft } from "react-icons/fa";
 
 const AboutPage = () => {

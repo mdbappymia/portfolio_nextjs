@@ -45,6 +45,7 @@ export default function SignInPage() {
         // console.log(data.user);
         dispatch(
           setUser({
+            id: decodeUser.id,
             email: decodedToken.email,
             name: decodeUser.name,
             role: decodeUser.role || "user",

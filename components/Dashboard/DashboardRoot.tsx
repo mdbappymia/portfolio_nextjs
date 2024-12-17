@@ -3,92 +3,119 @@
 import { Sidebar } from "flowbite-react";
 import Link from "next/link";
 import { useState } from "react";
-import { BiArrowBack, BiHome, BiLogoBlogger, BiPlus } from "react-icons/bi";
+import {
+  BiArrowBack,
+  BiArrowToRight,
+  BiHome,
+  BiLogoBlogger,
+  BiPlus,
+} from "react-icons/bi";
+import { BsArrowBarLeft, BsBag } from "react-icons/bs";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaUser } from "react-icons/fa6";
 import {
   HiArrowSmRight,
   HiChartPie,
   HiInbox,
   HiShoppingBag,
-  HiUser,
   HiViewBoards,
 } from "react-icons/hi";
+import { LiaBlogSolid } from "react-icons/lia";
+import { MdContactPage, MdRoomService } from "react-icons/md";
 
 const DashboardRoot = ({ children }: any) => {
   const [hideBar, setHideBar] = useState<boolean>(false);
   return (
     <div className="_75vh">
-      <div className="flex gap-5">
+      <div className="flex gap-1">
         <div className="relative">
           <Sidebar
             aria-label="Default sidebar example"
-            className={"_75vh " + (hideBar && "w-16")}
+            className={
+              "_75vh transition-all !rounded-2xl overflow-hidden " +
+              (hideBar && "w-16")
+            }
           >
-            <Sidebar.Items>
+            <Sidebar.Items className={"transition-all " + (hideBar && "w-16")}>
               <Sidebar.ItemGroup>
-                <Sidebar.Item as={Link} href="/dashboard" icon={HiChartPie}>
+                <Sidebar.Item
+                  as={Link}
+                  href="/dashboard"
+                  icon={HiChartPie}
+                  title="Dashboard"
+                >
                   {!hideBar && "Dashboard"}
                 </Sidebar.Item>
                 <Sidebar.Item
                   href="/dashboard/about"
-                  icon={HiViewBoards}
-                  label="Pro"
+                  icon={FaUser}
                   labelColor="dark"
                   as={Link}
+                  title="About"
                 >
-                  About
+                  {!hideBar && "About"}
                 </Sidebar.Item>
                 <Sidebar.Item
                   href="/dashboard/project"
-                  icon={HiInbox}
-                  label="3"
+                  icon={HiShoppingBag}
                   as={Link}
+                  title="Project"
                 >
-                  Project
+                  {!hideBar && "Project"}
                 </Sidebar.Item>
-                <Sidebar.Collapse icon={HiShoppingBag} label="Blog Page">
+                <Sidebar.Collapse
+                  icon={LiaBlogSolid}
+                  label={!hideBar ? "Blog Page" : ""}
+                  className={hideBar ? "blog_label_hidden" : ""}
+                  title="Blog Page"
+                >
                   <Sidebar.Item
                     as={Link}
                     href="/dashboard/blog"
                     icon={BiLogoBlogger}
+                    title="Blog"
                   >
-                    Blog
+                    {!hideBar && "Blog"}
                   </Sidebar.Item>
                   <Sidebar.Item
                     as={Link}
                     href="/dashboard/blog/add_blog"
                     icon={BiPlus}
+                    title="Add New"
                   >
-                    Add New
+                    {!hideBar && "Add New"}
                   </Sidebar.Item>
                 </Sidebar.Collapse>
                 <Sidebar.Item
                   as={Link}
                   href="/dashboard/service"
-                  icon={HiShoppingBag}
+                  icon={MdRoomService}
+                  title="Service"
                 >
-                  Services
+                  {!hideBar && "Services"}
                 </Sidebar.Item>
                 <Sidebar.Item
                   as={Link}
                   href="/dashboard/contact"
-                  icon={HiArrowSmRight}
+                  icon={MdContactPage}
+                  title="Contact"
                 >
-                  Contact
+                  {!hideBar && "Contact"}
                 </Sidebar.Item>
-                <Sidebar.Item as={Link} href="/" icon={BiHome}>
-                  Home
+                <Sidebar.Item as={Link} href="/" icon={BiHome} title="Home">
+                  {!hideBar && "Home"}
                 </Sidebar.Item>
               </Sidebar.ItemGroup>
             </Sidebar.Items>
           </Sidebar>
           <div
-            className="bg-black text-white p-5 rounded-full inline-block absolute top-0 right-0"
+            className="bg-black text-white p-2 rounded-full inline-block absolute top-1 -right-3 transition-all"
             onClick={() => setHideBar((a) => !a)}
           >
-            <BiArrowBack />
+            {!hideBar ? <FaArrowLeft /> : <FaArrowRight />}
           </div>
         </div>
-        <div className="w-full">{children}</div>
+        <div className="w-full overflow-auto p-3">{children}</div>
       </div>
     </div>
   );

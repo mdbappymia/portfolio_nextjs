@@ -1,8 +1,14 @@
 "use client";
-import { FileInput, Label, Select, Tabs, TextInput } from "flowbite-react";
+import {
+  Button,
+  FileInput,
+  Label,
+  Select,
+  Tabs,
+  TextInput,
+} from "flowbite-react";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import ReactHtmlParser from "react-html-parser";
 import { BiCheck, BiPlus } from "react-icons/bi";
 import catagories from "@/public/data/blog_catagory.json";
 
@@ -11,27 +17,70 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 // import "react-quill/dist/quill.snow.css"; // Import the default theme CSS
 import "react-quill/dist/quill.snow.css"; // Import the default theme CSS
+import PreviewBlogModal from "@/components/Dashboard/Blog/PreviewBlogModal";
+import { useAppSelector } from "@/redux/store";
 
 const QuillEditor = () => {
   const [editorContent, setEditorContent] = useState<string>("");
+  const [blogTitle, setBlogTitle] = useState<string>("");
+  const [blogCategory, setBlogCategory] = useState<string>("All");
+  const [blogCover, setBlogCover] = useState<any>(null);
+  const [openModal, setOpenModal] = useState(false);
+  const user: any = useAppSelector((state) => state.user);
+
+  // console.log(user);
 
   const handleEditorChange = (value: string) => {
     setEditorContent(value);
   };
+  console.log(process.env.NEXT_PUBLIC_ROOT_URL);
+  const handleSubmit = () => {
+    const confirm = window.confirm("Are you sure?");
+    console.log(confirm);
+    if (confirm) {
+      const formData = new FormData();
+      if (blogCover && blogTitle) {
+        formData.append("blogTitle", blogTitle);
+        formData.append("blogCategory", blogCategory);
+        formData.append("blogCover", blogCover[0]);
+        formData.append("content", editorContent);
+        formData.append("author", user.id);
 
+        console.log(formData);
+        fetch("/api/blog/create", {
+          method: "POST",
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data: any) => {
+            console.log(data);
+          });
+      }
+    }
+  };
   return (
     <div className="flex flex-col gap-5">
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Add Blog Title" />
         </div>
-        <TextInput id="base" type="text" sizing="md" />
+        <TextInput
+          id="base"
+          type="text"
+          sizing="md"
+          onChange={(e) => setBlogTitle(e.target.value)}
+        />
       </div>
       <div className="mb-2">
         <div className="mb-2">
           <Label htmlFor="default-file-upload" value="Add cover picture" />
         </div>
-        <FileInput id="default-file-upload" />
+        <FileInput
+          id="default-file-upload"
+          onChange={(e) => setBlogCover(e.target.files)}
+          accept="image/png, image/jpeg"
+          helperText="PNG, JPG (MAX. 200kb)."
+        />
       </div>
       <div className="mb-2">
         <div className="mb-2">
@@ -39,9 +88,19 @@ const QuillEditor = () => {
         </div>
         <Tabs aria-label="Tabs with icons">
           <Tabs.Item active title="Select existing category" icon={BiCheck}>
-            <Select id="countries" required className="w-72">
+            <Select
+              id="countries"
+              required
+              className="max-w-72"
+              onChange={(e) => setBlogCategory(e.target.value)}
+            >
+              <option selected value="All">
+                Default
+              </option>
               {catagories.map((a, i) => (
-                <option key={i}>{a}</option>
+                <option key={i} value={a}>
+                  {a}
+                </option>
               ))}
             </Select>
           </Tabs.Item>
@@ -52,6 +111,7 @@ const QuillEditor = () => {
               sizing="md"
               className="w-72"
               placeholder="Insert category name"
+              onChange={(e) => setBlogCategory(e.target.value)}
             />
           </Tabs.Item>
         </Tabs>
@@ -74,22 +134,21 @@ const QuillEditor = () => {
           ],
         }}
       />
+      <div className="flex gap-3">
+        <Button onClick={() => setOpenModal(true)}>Preview</Button>
+        <Button color="success" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </div>
       <div>
-        <h3>Editor Content:</h3>
-        {/* <pre>
-          {editorContent
-            .replaceAll("<h1", "<h1 class='text-2xl'")
-            .replaceAll("<h2", "<h2 class='text-xl'")
-            .replaceAll("<h3", "<h3 class='text-md'")}
-        </pre> */}
-        <div>
-          {ReactHtmlParser(
-            editorContent
-              .replaceAll("<h1", "<h1 class='text-2xl'")
-              .replaceAll("<h2", "<h2 class='text-xl'")
-              .replaceAll("<h3", "<h3 class='text-md'")
-          )}
-        </div>
+        <PreviewBlogModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          blogTitle={blogTitle}
+          blogCategory={blogCategory}
+          blogCover={blogCover}
+          editorContent={editorContent}
+        />
       </div>
     </div>
   );

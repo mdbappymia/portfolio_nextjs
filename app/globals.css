@@ -80,3 +80,23 @@ body {
 ._75vh {
   min-height: 75vh;
 }
+
+.blog_label_hidden span {
+  display: none;
+}
+.custom_radius > div {
+  border-radius: 15px;
+}
+
+/* preview editor  */
+.preview_editor_text pre {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding: 5px !important;
+  overflow: auto;
+  width: auto;
+}
+/* .ql-snow a {
+    color: #06c;
+} */

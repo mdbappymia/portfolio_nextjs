@@ -33,6 +33,7 @@ const RootComponent = ({ children }: any) => {
         try {
           dispatch(
             setUser({
+              id: getUser._id,
               email: getUser.email,
               name: getUser.name,
               role: getUser.role,
@@ -70,6 +71,7 @@ const RootComponent = ({ children }: any) => {
         // Decode the new access token and set user data in Redux store
         dispatch(
           setUser({
+            id: getUserRefreshToken._id,
             email: getUserRefreshToken.email,
             name: getUserRefreshToken.name,
             role: getUserRefreshToken.role,

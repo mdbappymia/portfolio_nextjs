@@ -1,14 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
 import loadingReducer from "./slices/loadingSlice";
+import blogReducer from "./slices/blogSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { blogApi } from "./slices/blogApi";
 
-export const makeStore = () => {
+export const makeStore: any = () => {
   return configureStore({
     reducer: {
       user: userReducer,
       loading: loadingReducer,
+      blog: blogReducer,
+      [blogApi.reducerPath]: blogApi.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(blogApi.middleware),
   });
 };
 

@@ -23,7 +23,7 @@ import { useAppSelector } from "@/redux/store";
 const QuillEditor = () => {
   const [editorContent, setEditorContent] = useState<string>("");
   const [blogTitle, setBlogTitle] = useState<string>("");
-  const [blogCategory, setBlogCategory] = useState<string>("All");
+  const [blogCategory, setBlogCategory] = useState<string>("Random");
   const [blogCover, setBlogCover] = useState<any>(null);
   const [openModal, setOpenModal] = useState(false);
   const user: any = useAppSelector((state) => state.user);
@@ -94,7 +94,7 @@ const QuillEditor = () => {
               className="max-w-72"
               onChange={(e) => setBlogCategory(e.target.value)}
             >
-              <option selected value="All">
+              <option selected value="Random">
                 Default
               </option>
               {catagories.map((a, i) => (

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Flowbite, Spinner } from "flowbite-react";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import MainNavbar from "../Shared/MainNavbar";
 import MainFooter from "../Shared/MainFooter";
 import { useRouter } from "next/navigation";
@@ -9,48 +9,58 @@ import { clearUser, setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { setUserIsloading } from "@/redux/slices/loadingSlice";
 import { useAppSelector } from "@/redux/store";
+import { useGetBlogsQuery } from "@/redux/slices/blogApi";
+import {
+  setBlogCategories,
+  setBlogs,
+  setIsLoadingBlog,
+} from "@/redux/slices/blogSlice";
 
 const RootComponent = ({ children }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const user = useAppSelector((state) => state.user);
   const userIsLoading = useAppSelector((state) => state.loading.userIsloading);
 
   useEffect(() => {
     dispatch(setUserIsloading(true));
-    assignUser().then((data) => {
-      // console.log(data);
-      const getUser: any = data;
-      // console.log(getUser);
-      if (!getUser.email) {
-        // console.log("Get useremail ");
-        refreshAccessToken();
-        dispatch(setUserIsloading(false));
-        return;
-      }
-      // Check if the access token is available
-      if (getUser.email) {
-        try {
-          dispatch(
-            setUser({
-              id: getUser._id,
-              email: getUser.email,
-              name: getUser.name,
-              role: getUser.role,
-            })
-          );
+    assignUser()
+      .then((data) => {
+        // console.log(data);
+        const getUser: any = data;
+        // console.log(getUser);
+        if (!getUser.email) {
+          // console.log("Get useremail ");
+          refreshAccessToken();
           dispatch(setUserIsloading(false));
           return;
-        } catch (error) {
-          // dispatch(clearUser());
-          // console.log(error);
-          dispatch(setUserIsloading(false));
         }
-      } else {
+        // Check if the access token is available
+        if (getUser.email) {
+          try {
+            dispatch(
+              setUser({
+                id: getUser._id,
+                email: getUser.email,
+                name: getUser.name,
+                role: getUser.role,
+              })
+            );
+            dispatch(setUserIsloading(false));
+            return;
+          } catch (error) {
+            // dispatch(clearUser());
+            console.log(error);
+          }
+        } else {
+          dispatch(clearUser());
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {
         dispatch(setUserIsloading(false));
-        dispatch(clearUser());
-      }
-    });
+      });
   }, [dispatch, router]);
 
   // Function to refresh the access token using the refresh token

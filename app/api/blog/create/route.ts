@@ -4,29 +4,7 @@ import UserModel from "@/models/userModel";
 import Blog from "@/models/blogModel";
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/connectToDB";
-import formidable, { Fields, Files } from "formidable";
 import fileUileUpload from "@/lib/functions/fileUpload";
-import path from "path";
-
-// Disable Next.js's default body parser
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-// Function to parse FormData using formidable
-const parseForm = (
-  req: NextApiRequest
-): Promise<{ fields: Fields; files: Files }> => {
-  const form = formidable({ multiples: true });
-  return new Promise((resolve, reject) => {
-    form.parse(req, (err, fields, files) => {
-      if (err) reject(err);
-      resolve({ fields, files });
-    });
-  });
-};
 
 export async function POST(req: any, res: NextApiResponse) {
   await connectToDatabase();
@@ -49,13 +27,13 @@ export async function POST(req: any, res: NextApiResponse) {
       );
     }
     console.log(blogCover);
-    const uploadDir = "public/uploads/";
+    const uploadDir = "public/static/uploads/";
     const blogCoverLink = await fileUileUpload(blogCover, uploadDir);
     console.log(blogCoverLink);
     const newBlog = new Blog({
       blogTitle,
       blogCategory,
-      blogCover: blogCoverLink.replaceAll("\\", "/"),
+      blogCover: blogCoverLink.replaceAll("\\", "/").replace("public", ""),
       content,
       author,
     });

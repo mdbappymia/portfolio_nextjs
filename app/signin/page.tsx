@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import { clearUser, setUser } from "@/redux/slices/userSlice";
 import { useAppSelector } from "@/redux/store";
-import { setUserIsloading } from "@/redux/slices/loadingSlice";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -23,7 +22,6 @@ export default function SignInPage() {
 
     setError("");
     setLoading(true);
-    dispatch(setUserIsloading(true));
 
     try {
       const response = await fetch("/api/auth/signin", {
@@ -53,11 +51,9 @@ export default function SignInPage() {
         );
 
         router.push("/dashboard");
-        dispatch(setUserIsloading(false));
       } else {
         setError(data.error || "Invalid credentials");
         dispatch(clearUser());
-        dispatch(setUserIsloading(false));
       }
     } catch (err) {
       setError("Unable to connect. Please try again later.");

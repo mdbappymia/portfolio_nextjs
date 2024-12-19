@@ -41,7 +41,7 @@ export async function POST(req: any, res: NextApiResponse) {
     const result = await newBlog.save();
     // console.log(result);
     return NextResponse.json(
-      { message: "Blog created successfully", blog: "newBlog" },
+      { message: "Blog created successfully", blog: newBlog },
       { status: 201 }
     );
   } catch (error) {

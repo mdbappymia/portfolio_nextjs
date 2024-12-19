@@ -18,6 +18,12 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
     // console.log(decoded.password);
     // console.log(user.password);
+    if (!user) {
+      return NextResponse.json(
+        { error: "Invalid credentials" },
+        { status: 401 }
+      );
+    }
     if (user.password != decoded.password) {
       return NextResponse.json(
         { error: "Invalid credentials" },

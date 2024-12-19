@@ -1,9 +1,8 @@
 "use client";
 
-import { setUserIsloading } from "@/redux/slices/loadingSlice";
 import { useAppSelector } from "@/redux/store";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function SignupPage() {
@@ -34,7 +33,6 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      dispatch(setUserIsloading(true));
       const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
@@ -45,17 +43,13 @@ export default function SignupPage() {
 
       const data = await response.json();
       if (response.ok) {
-        dispatch(setUserIsloading(false));
         router.push("/signin");
       } else {
-        dispatch(setUserIsloading(false));
         setError(data.error || "Something went wrong");
       }
     } catch (err) {
-      dispatch(setUserIsloading(false));
       setError("Unable to connect. Please try again later.");
     }
-    dispatch(setUserIsloading(false));
     setLoading(false);
   };
 

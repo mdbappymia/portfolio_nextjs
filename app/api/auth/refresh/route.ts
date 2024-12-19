@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
-// import { parseCookies } from "nookies";
 import UserModel from "@/models/userModel";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
@@ -9,12 +8,10 @@ import mongoose from "mongoose";
 const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || "your_NEXTAUTH_SECRET";
 
 export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  // const cookies1 = parseCookies({ req });
   const cookieStore = await cookies();
   const refreshToken: any = cookieStore.get("refresh_token")?.value;
 
   if (!refreshToken) {
-    // return res.status(401).json({ error: "No refresh token found" });
     return NextResponse.json(
       { error: "No refresh token found" },
       { status: 401 }
@@ -22,14 +19,18 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    // Verify the refresh token
     const decoded: any = jwt.verify(refreshToken, NEXTAUTH_SECRET);
     let user: any = {};
     if (mongoose.models.User) {
       user = await UserModel.findOne({ email: decoded.email });
     }
-    // console.log(decoded.password);
-    // console.log(user);
+
+    if (!user) {
+      return NextResponse.json(
+        { error: "Invalid credentials" },
+        { status: 401 }
+      );
+    }
     if (user.password && user.password != decoded.password) {
       return NextResponse.json(
         { error: "Invalid credentials" },

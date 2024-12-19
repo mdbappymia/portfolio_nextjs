@@ -3,32 +3,28 @@
 
 import DashboardRoot from "@/components/Dashboard/DashboardRoot";
 import { useAppSelector } from "@/redux/store";
-
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { Spinner } from "flowbite-react";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = useAppSelector((state) => state.user);
   const userIsLoading = useAppSelector((state) => state.loading.userIsloading);
-  const router = useRouter();
 
-  // Redirect unauthenticated users to "/signin"
-  useEffect(() => {
-    if (!userIsLoading && !user.email) {
-      router.push("/signin");
-    }
-  }, [router, user.email, userIsLoading]);
-
-  if (userIsLoading) {
-    return <div>Loading...</div>;
-  }
-
-  // Render children only if the user is authenticated
   return (
-    <div>{user.email ? <DashboardRoot>{children}</DashboardRoot> : null}</div>
+    <div>
+      {!userIsLoading ? (
+        <DashboardRoot>{children}</DashboardRoot>
+      ) : (
+        <div className="text-center _75vh flex items-center w-full justify-center">
+          <Spinner
+            aria-label="Center-aligned spinner example"
+            size="xl"
+            className="font-bold"
+          />
+        </div>
+      )}
+    </div>
   );
 }

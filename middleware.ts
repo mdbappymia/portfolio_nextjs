@@ -5,6 +5,8 @@ import { jwtVerify } from "jose";
 const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || "your_NEXTAUTH_SECRET";
 
 export async function middleware(req: NextRequest) {
+  // await mongoose.connect("mongodb://localhost:27017/mdbappymia");
+
   const accessToken = req.cookies.get("access_token")?.value;
 
   const refreshToken = req.cookies.get("refresh_token")?.value;
@@ -18,7 +20,7 @@ export async function middleware(req: NextRequest) {
       accessToken,
       new TextEncoder().encode(NEXTAUTH_SECRET)
     );
-
+    // const user: any = await UserModel.findOne({ email: payload.email });
     // Allow access to the protected route
     if (!payload.email) {
       return NextResponse.redirect(new URL("/signin", req.url));
@@ -31,7 +33,7 @@ export async function middleware(req: NextRequest) {
           refreshToken,
           new TextEncoder().encode(NEXTAUTH_SECRET)
         );
-
+        // const user: any = await UserModel.findOne({ email: payload.email });
         if (!payload.email) {
           return NextResponse.redirect(new URL("/signin", req.url));
         }

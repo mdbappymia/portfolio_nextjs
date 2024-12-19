@@ -8,16 +8,20 @@ const AboutMe = () => {
       <div className="my-5">
         <h1 className="text-2xl font-extrabold leading-10">
           <span className="block">Hello,</span> I am{" "}
-          <span className="text-lime-500">Md. Bappy Mia</span>, an{" "}
+          <span className="text-lime-500">Md. Bappy Mia</span>, a{" "}
           <span className="block">Web Developer.</span>
         </h1>
         <p className="text-gray-800 dark:text-gray-300">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-          amet autem, officia ratione enim molestias nam, numquam repudiandae
-          laboriosam, doloremque dolorem assumenda. Fugiat repudiandae, culpa
-          beatae, labore dignissimos perferendis ad deleniti sequi, officia sint
-          illum neque hic. Voluptate vero officia pariatur velit eos repudiandae
-          magnam, perspiciatis sequi! Debitis, totam unde!
+          Md. Bappy Mia is a passionate MERN stack developer with expertise in
+          building dynamic and scalable web applications. Currently serving as a
+          Junior Software Developer at Radiant Data System Ltd, he brings a
+          blend of technical skills and creativity to his role. Bappy is skilled
+          in MongoDB, Express.js, React.js, and Node.js, enabling him to craft
+          seamless full-stack solutions. Dedicated to continuous learning and
+          innovation, he is committed to delivering high-quality software while
+          staying updated with the latest technologies. Bappy&apos;s enthusiasm
+          for coding and problem-solving drives him to excel in collaborative
+          and challenging environments.
         </p>
       </div>
       <div className="flexitems-center">

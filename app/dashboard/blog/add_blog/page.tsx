@@ -28,6 +28,8 @@ const QuillEditor = () => {
   const [blogCategory, setBlogCategory] = useState<string>("Random");
   const [blogCover, setBlogCover] = useState<any>(null);
   const [openModal, setOpenModal] = useState(false);
+  const [showToastMessage, setShowToastMessage] = useState(false);
+
   const user: any = useAppSelector((state) => state.user);
 
   // console.log(user);
@@ -61,24 +63,37 @@ const QuillEditor = () => {
               setBlogCategory("");
               setBlogCover(null);
               setEditorContent("");
+              setShowToastMessage(true);
             }
           });
       }
     }
   };
+
+  setTimeout(() => {
+    if (showToastMessage === true) {
+      setShowToastMessage(false);
+      return;
+    }
+  }, 3000);
+
   return (
     <>
-      <div className="w-full">
-        <Toast className="bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200 w-full max-w-full">
-          <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ">
-            <HiCheck className="h-5 w-5" />
-          </div>
-          <div className="ml-3 text-sm font-normal">
-            Item moved successfully.
-          </div>
-          <Toast.Toggle />
-        </Toast>
-      </div>
+      {showToastMessage === true ? (
+        <div className="w-full">
+          <Toast className="bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200 w-full max-w-full">
+            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ">
+              <HiCheck className="h-5 w-5" />
+            </div>
+            <div className="ml-3 text-sm font-normal">
+              Item moved successfully.
+            </div>
+            <Toast.Toggle />
+          </Toast>
+        </div>
+      ) : (
+        <></>
+      )}
       <div className="flex flex-col gap-5">
         <div>
           <div className="mb-2 block">
@@ -101,7 +116,7 @@ const QuillEditor = () => {
             onChange={(e) => setBlogCover(e.target.files)}
             accept="image/png, image/jpeg"
             helperText="PNG, JPG (MAX. 200kb)."
-            value={blogCover}
+            // value={blogCover}
           />
         </div>
         <div className="mb-2">

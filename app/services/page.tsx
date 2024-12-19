@@ -21,7 +21,7 @@ const ServicePage = () => {
       </div>
       <div className="lg:grid grid-cols-2 gap-3">
         {services.map((service: any, i: number) => (
-          <div key={i}>
+          <div key={i} className="flex w-full flex-row">
             <ServiceCard service={service} />
           </div>
         ))}

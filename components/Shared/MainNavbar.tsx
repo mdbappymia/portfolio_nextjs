@@ -4,7 +4,7 @@ import { clearUser } from "@/redux/slices/userSlice";
 import { useAppSelector } from "@/redux/store";
 import { Button, DarkThemeToggle, Navbar } from "flowbite-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 
 export default function MainNavbar() {
@@ -12,6 +12,7 @@ export default function MainNavbar() {
   const user = useAppSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  const router = useRouter();
   const signOut = async () => {
     try {
       const response = await fetch("/api/auth/signout", {
@@ -20,6 +21,7 @@ export default function MainNavbar() {
       const result = await response.json();
       if (response.ok) {
         dispatch(clearUser());
+        router.push("/");
       } else {
         console.log("Something with wrong");
       }

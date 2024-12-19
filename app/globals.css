@@ -92,7 +92,7 @@ body {
 .preview_editor_text pre {
   background-color: black;
   color: white;
-  border-radius: 5px;
+  border-radius: 7px !important;
   padding: 5px !important;
   overflow: auto;
   width: auto;
@@ -100,3 +100,8 @@ body {
 /* .ql-snow a {
     color: #06c;
 } */
+
+.dark .preview_editor_text.preview_editor_text code {
+  background-color: #555 !important;
+  /* color: black !important; */
+}

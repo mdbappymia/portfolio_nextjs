@@ -1,9 +1,9 @@
 // lib/mongodb.ts
 import mongoose from "mongoose";
 
-// const MONGODB_URI = process.env.MONGODB_URI as string;
-const MONGODB_URI =
-  "mongodb+srv://mdbappymia:101202mbm@bappy.3hrifbq.mongodb.net/";
+const MONGODB_URI = process.env.MONGODB_URI as string;
+// const MONGODB_URI =
+//   "mongodb+srv://mdbappymia:101202mbm@bappy.3hrifbq.mongodb.net/";
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -13,7 +13,14 @@ if (!MONGODB_URI) {
 
 // Function to connect to the MongoDB database
 export async function connectToDatabase() {
-  if (mongoose.connections[0].readyState) {
+  // if (mongoose.connection.readyState === 1) {
+  //   console.log("Already connected to MongoDB.");
+  //   return mongoose.connection;
+  // }
+  if (
+    mongoose?.connections?.length > 0 &&
+    mongoose?.connections[0]?.readyState
+  ) {
     // Return early if already connected to MongoDB
     return mongoose.connections[0];
   }

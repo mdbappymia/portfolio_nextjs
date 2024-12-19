@@ -20,11 +20,11 @@ const ProjectPage = () => {
       </div>
       <div className="my-5">
         <div className="lg:grid grid-cols-2 gap-3 mb-3">
-          <div>
+          <div className="w-full flex flex-col">
             <div className="mb-3 h-72">
               <ProjectCard project={firstFourProjects[0]} />
             </div>
-            <div className="h-72">
+            <div className="h-72 mb-3 lg:mb-0">
               <ProjectCard project={firstFourProjects[1]} />
             </div>
           </div>

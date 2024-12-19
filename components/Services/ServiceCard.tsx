@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 const ServiceCard: FC<any> = ({ service }) => {
   return (
-    <Card className="rounded-3xl">
+    <Card className="rounded-3xl w-full">
       <h1 className="font-bold text-2xl">{service.name}</h1>
       <div className="flex">
         <i

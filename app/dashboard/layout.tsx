@@ -4,6 +4,8 @@
 import DashboardRoot from "@/components/Dashboard/DashboardRoot";
 import { useAppSelector } from "@/redux/store";
 import { Spinner } from "flowbite-react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function RootLayout({
   children,
@@ -11,10 +13,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const userIsLoading = useAppSelector((state) => state.loading.userIsloading);
+  const user = useAppSelector((state) => state.user);
+
+  // useEffect(() => {
+  //   if (user.email === null && userIsLoading === false) {
+  //     router.push("/signin");
+  //   }
+  // }, [router, user.email, userIsLoading]);
 
   return (
     <div>
-      {!userIsLoading ? (
+      {!userIsLoading && user.email ? (
         <DashboardRoot>{children}</DashboardRoot>
       ) : (
         <div className="text-center _75vh flex items-center w-full justify-center">

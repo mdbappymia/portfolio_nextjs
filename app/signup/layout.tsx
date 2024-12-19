@@ -13,8 +13,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   const user = useAppSelector((state) => state.user);
-  const userIsLoading =
-    useAppSelector((state) => state.loading.userIsloading) || true;
+  const userIsLoading = useAppSelector((state) => state.loading.userIsloading);
   const router = useRouter();
   // console.log(user);
   // Redirect unauthenticated users to "/signin"

@@ -4,10 +4,12 @@ import UserModel from "@/models/userModel";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import mongoose from "mongoose";
+import { connectToDatabase } from "@/lib/connectToDB";
 
 const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || "your_NEXTAUTH_SECRET";
 
 export async function POST(req: NextApiRequest, res: NextApiResponse) {
+  await connectToDatabase();
   const cookieStore = await cookies();
   const refreshToken: any = cookieStore.get("refresh_token")?.value;
 

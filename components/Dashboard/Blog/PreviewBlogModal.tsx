@@ -32,11 +32,11 @@ const PreviewBlogModal = ({
       <Modal.Header>{blogTitle || "[Title missing]"}</Modal.Header>
       <Modal.Body>
         <div className="space-y-6">
-          <div className="relative w-full h-[500px]">
+          <div className="relative w-full lg:h-[500px] h-[300]">
             <Image
               src={coverSrc}
               // src={require("/public/uploads/1734450344015_image.jpg")}
-              alt="Blog Cover"
+              alt="Blog Cover Missing"
               layout="fill" // Ensures the image stretches to cover the container
               objectFit="cover" // Crops the image to fit the container proportionally
               className="rounded-3xl"

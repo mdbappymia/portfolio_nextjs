@@ -18,7 +18,7 @@ export async function POST(req: any, res: NextApiResponse) {
     const author = Formdata.get("author");
 
     // Ensure that the user exists
-    console.log(author);
+    // console.log(author);
     const user = await UserModel.findById(author);
     if (!user) {
       return NextResponse.json(
@@ -26,7 +26,7 @@ export async function POST(req: any, res: NextApiResponse) {
         { status: 400 }
       );
     }
-    console.log(blogCover);
+    // console.log(blogCover);
     const uploadDir = "public/static/uploads/";
     const blogCoverLink = await fileUileUpload(blogCover, uploadDir);
     console.log(blogCoverLink);
@@ -39,7 +39,7 @@ export async function POST(req: any, res: NextApiResponse) {
     });
 
     const result = await newBlog.save();
-    console.log(result);
+    // console.log(result);
     return NextResponse.json(
       { message: "Blog created successfully", blog: "newBlog" },
       { status: 201 }

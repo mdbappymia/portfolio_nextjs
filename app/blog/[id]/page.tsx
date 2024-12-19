@@ -40,10 +40,12 @@ const BlogDetailsPage: FC<any> = async ({ params }) => {
       <Card className="rounded-3xl">
         <img
           src={blog?.blogCover || dummyProject}
-          className="h-72 w-full rounded-3xl"
+          className="w-full rounded-3xl lg:h-[400px] h-[200]"
           alt={""}
         />
-        <h1 className="font-bold my-10 text-2xl">{blog.blogTitle}</h1>
+        <h1 className="font-bold my-10 text-2xl text-center">
+          {blog.blogTitle}
+        </h1>
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-300">
             Category: {blog?.blogCategory || "[Category Missing]"}

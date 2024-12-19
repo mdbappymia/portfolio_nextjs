@@ -89,7 +89,7 @@ const QuillEditor = () => {
         <Tabs aria-label="Tabs with icons">
           <Tabs.Item active title="Select existing category" icon={BiCheck}>
             <Select
-              id="countries"
+              id="categories"
               required
               className="max-w-72"
               onChange={(e) => setBlogCategory(e.target.value)}

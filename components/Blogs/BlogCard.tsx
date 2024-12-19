@@ -14,7 +14,7 @@ const BlogCard: FC<any> = ({ blog }) => {
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {blog.blogTitle}
       </h5>
-      <p className="font-normal text-gray-700 dark:text-gray-400">
+      <div className="font-normal text-gray-700 dark:text-gray-400">
         {ReactHtmlParser(blog.content.slice(0, 80))}...{" "}
         <Link
           className="text-lime-500 hover:text-lime-600 hover:underline"
@@ -22,7 +22,7 @@ const BlogCard: FC<any> = ({ blog }) => {
         >
           See more
         </Link>
-      </p>
+      </div>
     </Card>
   );
 };

@@ -9,12 +9,6 @@ import { clearUser, setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { setUserIsloading } from "@/redux/slices/loadingSlice";
 import { useAppSelector } from "@/redux/store";
-import { useGetBlogsQuery } from "@/redux/slices/blogApi";
-import {
-  setBlogCategories,
-  setBlogs,
-  setIsLoadingBlog,
-} from "@/redux/slices/blogSlice";
 
 const RootComponent = ({ children }: any) => {
   const dispatch = useDispatch();
@@ -96,6 +90,8 @@ const RootComponent = ({ children }: any) => {
       console.error("Error refreshing access token:", error);
       // router.push("/signin");
       dispatch(clearUser());
+    } finally {
+      dispatch(setUserIsloading(false));
     }
   };
 
@@ -118,6 +114,8 @@ const RootComponent = ({ children }: any) => {
     } catch (error) {
       console.error("Error assigning user:", error);
       return {}; // Return an empty object in case of error
+    } finally {
+      dispatch(setUserIsloading(false));
     }
   };
 
